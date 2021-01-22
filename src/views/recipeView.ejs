@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.4.1/css/glide.core.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <!--<link rel="stylesheet" href="/css/reset.css">-->
+    <!--<link rel="stylesheet" href="/css/styles.css">-->
+    <link rel="stylesheet" href="/css/profilestyle.css">
+    <link rel="stylesheet" href="/css/recipe.css">
+    <link rel="stylesheet" type="text/css" href="/css/glider.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+ 
+    <title>Adam's Recipe App</title>
+</head>
+
+<body>
+
+    
+
+    <header class="navbar navbar-bright navbar-fixed-top" role="banner">
+        <div class="container ">
+          <div class="navbar-header nav-1">
+  
+          <nav class="nav-1" role="navigation">
+            <a class="nav-link" href="/">Home</a>
+  
+              <%for (let i = 0; i < nav.length; i++) { %> 
+             
+                
+                <a class="nav-link" href="<%=nav[i].link%>"> <%=nav[i].title%> </a>
+              
+            <%}%>
+            
+                 <a class="nav-link nav-bar-right" href="/auth/signout" > Signout </a>
+    
+          </nav>
+        </div>
+      </header>
+  
+  
+
+    <p id="top"></p>
+    <section class="recipe" id="seeded-loaf">
+
+        <h2 class="recipe-title"> 
+            <%= recipe.title %> 
+        </h2>
+
+        <aside class="time">
+                <p>Time: <%= recipe.time %>  </p>
+        </aside>
+
+        <aside class="serves-para">
+            <p >Servings: <span class="serv-num"><%= recipe.servings %></span></p> 
+        </aside>
+
+        <aside class="summary">
+            <p><%= recipe.summary %></p>
+        </aside>
+
+        <details class="tips">
+            <summary>Tips & Tricks</summary> 
+         
+     
+                 <ul class ="expand"> 
+
+                  <%for (let i = 0; i < recipe.tips.length; i++) { %> 
+                    <li>
+                      <%=recipe.tips[i]%>
+                    </li>
+                    <br>
+                  <%}%>
+
+                 </ul>
+         </details>
+
+
+         <figure class="food-photos">
+            <section id="slides">
+                <div class="glider-contain">
+                    <div class="glider">
+                        <%for (let i = 0; i < recipe.pictures.length; i++) { %> 
+
+                      <div class="pics"><img class="photos" src="<%=recipe.pictures[i].link%>"></a>
+                      <p id="pic-cap-3" class="pic-caption"><%=recipe.pictures[i].caption%></p></div>
+
+                    <%}%>
+                    </div>
+                  
+                    <button id="prev" aria-label="Previous" class="glider-prev">«</button>
+                    <button id="next" aria-label="Next" class="glider-next">»</button>
+                    <div role="tablist" class="dots"></div>
+                  </div>
+               
+                </section>
+            
+        </figure> 
+
+        <button class="measurements butt" id="convert-butt">
+            Uk 2 Us
+        </button>
+
+        <aside class="ingredients">
+            <table class = "ingredients-table">
+                <thead>
+                    <tr>
+                        <th class = "table-headers">Ingredients</th>
+                        <th class = "table-headers">Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                
+                <%for (let i = 0; i < recipe.ingreds.length; i++) { %> 
+                <tr>
+                    <td class="ingreds-name"><%=recipe.ingreds[i].name%></td>
+                <td><span class="ingreds-quant"><%= `${recipe.ingreds[i].amount} ${recipe.ingreds[i].unit}`%> </span>
+                    </td>
+                </tr>
+                <%}%>
+                
+                </tbody>
+            </table>
+        </aside>
+
+        <aside class="servings-calc">
+            <form id="servings">
+                <Label> <span class="serv-num"><% recipe.numServings %> </span> servings</Label><br>
+                <input type="range" class="slider" id="points" name="points" min="1" max="10" value="1" oninput="recipe.setNumServings(this.value) " defaultValue="1"><br>
+                
+            </form>
+
+        </aside>
+
+        <aside class="favourites">
+            
+            <button class="measurements butt" id="faves-butt" onclick=" ">Add to Favourites <i class="material-icons favourite-icon">bookmark</i></button>
+
+        </aside>
+
+        <article class="recipe-steps">
+
+          <%for (let i = 0; i < recipe.steps.length; i++) {%>
+    
+            <p><strong>Step  <%= i+1 %>:</strong> <%=recipe.steps[i]%> </p>
+         
+            <%}%>
+      
+        </article>
+
+        <details class="source">
+            <summary>Source</summary> 
+            <p><em> <a href="<%=recipe.source.link%>"> <%=recipe.source.description%></a></em></p>
+        </details>
+
+    </section>
+
+    
+     <footer>
+        <a class="nav-link" href="#top">back to top</a>
+    </footer>
+    <script type="module" src="/src/utils.js"></script>
+    <script src="/js/glider.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        window.addEventListener('load', function(){
+            new Glider(document.querySelector('.glider'), {
+                slidesToShow: 1,
+        dots: '.dots',
+        draggable: true,
+        arrows: {
+            prev: '.glider-prev',
+            next: '.glider-next'
+        },
+            })
+          })
+          </script>
+    
+    
+</body>
+
+</html>

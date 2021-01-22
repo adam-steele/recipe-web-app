@@ -1,0 +1,26 @@
+.signin-form{
+    margin: auto;
+    text-align: center;
+    padding: 5px;
+}
+
+.input {
+    margin: 5px;
+    padding: 5px;
+}
+
+.nav-1{
+    font-size: 0.75em;
+}
+
+.row{
+    margin: 60px auto;
+}
+
+.sign-butt{
+    background-color: var(--green-sheen);
+    color: var(--deep-champagne) ;
+    box-shadow: 10px 10px 5px grey;
+    border-radius: 5px;
+}
+

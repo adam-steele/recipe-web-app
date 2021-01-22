@@ -1,0 +1,53 @@
+.recipe {
+    
+    z-index: 10;
+    display: grid;
+    grid-template-columns: repeat(4,25%);
+    grid-template-areas: 
+    "title  title title title"
+    "photo photo photo photo"
+    "time convert tips serv" 
+    "ingred ingred ingred ingred"
+    "steps steps steps steps"
+    "source source source source";
+    padding: 10px;
+    
+
+}
+
+.nav-bar-right{
+   position: absolute;
+    right:0px;
+}
+
+.pics {
+    width: 300px;
+}
+
+#sard-outside {
+    width: 300px;
+}
+
+#sardines-body {
+    background-image: url(/assets/sard-pickles-outside.jpg);
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-clip: text;
+    -webkit-background-clip:text;
+    color: transparent;
+    z-index: 1;
+}
+
+#sardines-body::before {
+    content: "";
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    bottom: -1500px;
+    left: 0px;
+    background-color: rgba(247, 246, 248, 0.63);
+    z-index: -1;
+  }
+
+  
